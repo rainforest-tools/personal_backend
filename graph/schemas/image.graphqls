@@ -1,0 +1,29 @@
+type Image {
+  id: ID!
+  project: Project!
+  file: File!
+}
+
+type Project {
+  id: ID!
+  name: String!
+}
+
+extend type Query {
+  images: [Image!]!
+  projects: [Project!]!
+}
+
+input NewProject {
+  name: String!
+}
+
+input NewImage {
+  projectID: String!
+  fileID: String!
+}
+
+extend type Mutation {
+  createProject(input: NewProject!): Project!
+  createImage(input: NewImage!): Image!
+}
