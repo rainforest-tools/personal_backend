@@ -7,49 +7,49 @@ import (
 )
 
 type File struct {
-	ID     string `json:"id"`
-	Name   string `json:"name"`
-	FileID string `json:"fileID"`
+	ID     string `json:"id" bson:"_id"`
+	Name   string `json:"name" bson:"name"`
+	FileID string `json:"fileID" bson:"fileID"`
 }
 
 type Image struct {
-	ID      string   `json:"id"`
-	Project *Project `json:"project"`
-	File    *File    `json:"file"`
+	ID      string   `json:"id" bson:"_id"`
+	Project *Project `json:"project" bson:"project"`
+	File    *File    `json:"file" bson:"file"`
 }
 
 type NewImage struct {
-	ProjectID string `json:"projectID"`
-	FileID    string `json:"fileID"`
+	ProjectID string `json:"projectID" bson:"projectID"`
+	FileID    string `json:"fileID" bson:"fileID"`
 }
 
 type NewProject struct {
-	Name string `json:"name"`
+	Name string `json:"name" bson:"name"`
 }
 
 type NewTodo struct {
-	Text   string `json:"text"`
-	UserID string `json:"userId"`
+	Text   string `json:"text" bson:"text"`
+	UserID string `json:"userId" bson:"userId"`
 }
 
 type Project struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
+	ID   string `json:"id" bson:"_id"`
+	Name string `json:"name" bson:"name"`
 }
 
 type Todo struct {
-	ID   string `json:"id"`
-	Text string `json:"text"`
-	Done bool   `json:"done"`
-	User *User  `json:"user"`
+	ID   string `json:"id" bson:"_id"`
+	Text string `json:"text" bson:"text"`
+	Done bool   `json:"done" bson:"done"`
+	User *User  `json:"user" bson:"user"`
 }
 
 type UploadFile struct {
-	ID   string         `json:"id"`
-	File graphql.Upload `json:"file"`
+	ID   string         `json:"id" bson:"_id"`
+	File graphql.Upload `json:"file" bson:"file"`
 }
 
 type User struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
+	ID   string `json:"id" bson:"_id"`
+	Name string `json:"name" bson:"name"`
 }

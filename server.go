@@ -43,6 +43,8 @@ func main() {
 
 	r.POST("/upload", services.UploadHandler)
 
+	r.GET("/file/db/:db/:id", services.GetFile)
+
 	log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
 	r.Use(cors.Default())
 	r.Run(":"+port)
