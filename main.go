@@ -7,10 +7,13 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/gofiber/fiber/v2/middleware/recover"
 )
 
 func main() {
-	app := fiber.New()
+	app := fiber.New(fiber.Config{Prefork: true})
+	// middleware
+	app.Use(recover.New())
 	app.Use(cors.New())
 	app.Get("/about", func(c *fiber.Ctx) error {
 		return c.SendString("Hello, this is Rainforest 🌧🌲🌲")
