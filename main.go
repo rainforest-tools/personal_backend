@@ -4,10 +4,12 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/recover"
+	"github.com/golang-jwt/jwt/v4"
 
 	swagger "github.com/arsmn/fiber-swagger/v2"
 	_ "github.com/rainforest-tools/personal_backend/docs"
@@ -34,6 +36,9 @@ func main() {
 	app.Get("/swagger/*", swagger.Handler)
 	app.Get("/health", HealthCheck)
 
+	// auth
+	app.Post("/login", login)
+
 	app.Static("/static", "./static")
 
 	port := getPort()
@@ -48,6 +53,32 @@ func getPort() string {
 	}
 
 	return port
+}
+
+// Auth
+func login(c *fiber.Ctx) error {
+	user := c.FormValue("user")
+	pass := c.FormValue("pass")
+
+	if user != "rainforest" || pass != "rainforest" {
+		return c.SendStatus(fiber.StatusUnauthorized)
+	}
+
+	claims := jwt.MapClaims{
+		"name":  "Rainforest",
+		"admin": true,
+		"exp":   time.Now().Add(time.Hour * 72).Unix(),
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+
+	t, err := token.SignedString([]byte("secret"))
+
+	if err != nil {
+		return c.SendStatus(fiber.StatusInternalServerError)
+	}
+
+	return c.JSON(fiber.Map{"token": t})
 }
 
 // About

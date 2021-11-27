@@ -8,6 +8,8 @@ require (
 	github.com/cpuguy83/go-md2man/v2 v2.0.1 // indirect
 	github.com/go-openapi/spec v0.20.4 // indirect
 	github.com/gofiber/fiber/v2 v2.22.0
+	github.com/gofiber/jwt/v3 v3.2.1 // indirect
+	github.com/golang-jwt/jwt/v4 v4.1.0 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/swaggo/swag v1.7.4 // indirect
