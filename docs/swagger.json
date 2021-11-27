@@ -1,0 +1,37 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Rainforest Personal Backend",
+        "contact": {
+            "name": "Rainforest",
+            "url": "http://rainforest.tools",
+            "email": "rainforestnick@gmail.com"
+        },
+        "version": "0.1"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "paths": {
+        "/about": {
+            "get": {
+                "produces": [
+                    "text/plain"
+                ],
+                "summary": "About",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "summary": "Show the status of server"
+            }
+        }
+    }
+}
